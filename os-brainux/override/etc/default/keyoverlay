@@ -1,0 +1,9 @@
+# Options for the keyoverlay daemon. Run `keyoverlay -h` for the full list.
+#
+# By default the daemon auto-detects the "brain-kbd" input device, uses
+# /dev/fb0, and treats KEY_F16 (186) as the Symbol (記号) modifier.
+#
+# Example: show the Normal layout when KEY_F17 is held:
+#   ARGS="-n 187"
+
+ARGS=""

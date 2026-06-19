@@ -138,6 +138,11 @@ systemctl enable boot.mount
 # Enable RNDIS gadget
 systemctl enable ethernet_gadget
 
+# Enable keyoverlay (binary injected by make docker-brainux-keyoverlay)
+if [ -f /lib/systemd/system/keyoverlay.service ]; then
+    systemctl enable keyoverlay
+fi
+
 # Get wild
 cat <<EOF > /etc/apt/sources.list
 deb http://deb.debian.org/debian trixie main contrib non-free

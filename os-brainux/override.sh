@@ -19,3 +19,14 @@ install -g 1000 -o 1000 -m 0644 $SRC/home/user/.config/fcitx/profile $DST/home/u
 install -d -o 1000 -g 1000 -m 0755 $DST/home/user/lxterminal
 install -g 1000 -o 1000 -m 0644 $SRC/home/user/lxterminal/lxterminal.conf $DST/home/user/lxterminal/lxterminal.conf
 install -g root -o root -m 0644 -D $SRC/etc/jwm/system.jwmrc $DST/etc/jwm/system.jwmrc
+
+# keyoverlay binary: extracted from the .deb built by `make docker-brainux-keyoverlay`.
+# The service unit and default config are installed by override-pre.sh so they
+# exist before setup_brainux.sh runs `systemctl enable keyoverlay`.
+if [ -f "$SRC/keyoverlay_armhf.deb" ]; then
+    TMPDIR=$(mktemp -d)
+    dpkg-deb --extract "$SRC/keyoverlay_armhf.deb" "$TMPDIR"
+    install -g root -o root -m 0755 -D "$TMPDIR/usr/bin/keyoverlay" \
+        "$DST/usr/bin/keyoverlay"
+    rm -rf "$TMPDIR"
+fi
