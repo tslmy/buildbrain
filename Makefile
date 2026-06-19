@@ -194,7 +194,7 @@ image/sd_x1.img: clean_work
 	./image/build_image_x1.sh brainux sd_x1.img 3072
 
 image/sd_buildroot.img: clean_work
-	./image/build_image.sh buildroot_rootfs sd_buildroot.img 128
+	./image/build_image.sh buildroot_rootfs sd_buildroot.img 1024
 
 
 .PHONY:
